@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giphy API Homework Week 6</title>
+    <style type="text/css">
+        button {
+            margin-top: 30px;
+        }
+
+        form,
+        input {
+            float: right;
+        }
+
+        #giphyContainer {
+            clear: both;
+            float: left;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Title and main container-->
+    <div class="container">
+        <h1>Giphy Magic Buttons</h1>
+        <h3>Add a magic button for a wacky good time.</h3>
+
+        <!--Giphy's Will Go Here-->
+        <div id="giphyContainer">TEST
+
+        </div>
+
+        <!-- Input Form-->
+        <form>
+            <input id="addGiphy" value="Add Magic Button" type="submit"></span>
+            <span id="giphyInput"><input id="giphy-input" type="text" placeholder="Type Something Funny">
+        </form>
+
+        <!-- Giphy Buttons will get dynamically dumped here -->
+        <div id="giphyButton">
+            <button id ="giphyButton" data-search="Tommy Boy">Tommy Boy</button>
+
+        </div>
+
+
+        <!-- using Giphy Search End Point -->
+        <!-- jquery request & javascript script -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            //  On Click event listener for buttons
+            $("#addGiphy").on("click", function(){
+                alert( "That's a good one! Now click your button to let the magic happen...")
+                
+            });
+            $("button").on("click", function (event) {
+                event.preventDefault();
+             //   alert( "You're Hillarious! Do it again!");
+                
+                // make buttons connect with API
+                var x = $(this).data("search")
+                // console.log(x);
+
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + x + "&api_key=7HsIMdFRpHba4QRuO94mPXbrHh5b9AGy&limit=10";
+                
+                // console.log(queryURL);
+
+              })
+
+/*
+
+                // Get the to-do "value" from the textbox and store it a variable
+                var toDoTask = $("#to-do").val().trim();
+
+
+
+                // initial array of giphy buttons
+                var movies = ["Spock", "Captain Kurk", "Grumpy Cat", "El Chapulín", "chespirito", "chavo del 8", "Gilda Radner"]
+
+                for (var i = 0; i < gifs.length; i++) {
+
+                    // Then dynamicaly generating buttons for each item in the array.
+                    var a = $("<button>");
+                    // Adding a class
+                    a.addClass("foodie");
+                    // Adding a data-attribute with a value of the food at index i
+                    a.attr("data-name", foodTypes[i]);
+                    // Providing the button's text with a value of the food at index i
+                    a.text(foodTypes[i]);
+                    // Adding the button to the HTML
+                    $("#giphyContainer").append(a);
+                }
+            }
+
+            // Function for displaying giphy
+
+
+
+            // ajax request variable 
+
+            var queryURL = "http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=7HsIMdFRpHba4QRuO94mPXbrHh5b9AGy";
+
+            //$.ajax then URL using, method to send to server
+            $.ajax({ url: queryURL, method: 'GET' })
+                //after we get a response from the server we run a method to get a response
+
+                .done(function (response) {
+                    console.log(response);
+                });
+
+                */
+
+        </script>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giphy API Homework Week 6</title>
+</head>
+
+<body>
+    <button data-search="arnold"> Arnold</button>
+    <button data-search="sam jackson"> Sam Jackson </button>
+<div id=gifArea></div>
+    <!-- using Gihpy Search End Point -->
+    <!-- jquery request & javascript script -->
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script type="text/javascript">
+
+        // Arnold Button does something
+
+        $('button').on('click', function () {
+            var x = $(this).data("search");
+            // console.log(x);
+
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + x + "&api_key=7HsIMdFRpHba4QRuO94mPXbrHh5b9AGy&limit=10";
+            // console.log(queryURL)
+
+            /* ajax request variable */
+            $.ajax({ url: queryURL, method: 'GET' })
+                .done(function (response) {
+                 //  console.log(response);
+// .data[0].rating
+                    var gifs = response.data
+
+                    // last step (after appending gifs to apps) - loop through data array - add 4-loop
+                    for (var i=0; i < gifs.length; i++) {
+
+                        // how to reference and append gifs to the application
+                        // how to ref' a specific piece of data within the object returned by an API call
+                        // to this we have to go through each layer of that object until we get to the specific piece of data we want
+
+                        $('#gifArea')
+                            .prepend("<p>Rating: "+gifs[i].rating+"</p>")
+                            .prepend("<img src = '" +gifs[i].images.downsized.url + " '>");
+
+                    }
+
+                })
+
+
+
+
+            /*$.ajax then URL using, method to send to server
+            $.ajax({url:queryURL,method: 'GET'})
+       //after we get a response from the server we run a method to get a response
+       
+            .done(function(response){
+                console.log(response);  */
+        })
+
+    </script>
+
+
+</body>
+
+</html>
