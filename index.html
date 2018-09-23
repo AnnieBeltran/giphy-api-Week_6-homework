@@ -65,11 +65,10 @@
                 
                 // make buttons connect with API
                 var x = $(this).data("search")
-                // console.log(x);
+                 console.log(x);
 
                 var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + x + "&api_key=7HsIMdFRpHba4QRuO94mPXbrHh5b9AGy&limit=10";
                 
-                // console.log(queryURL);
 
               })
 
@@ -87,15 +86,7 @@
 
                     // Then dynamicaly generating buttons for each item in the array.
                     var a = $("<button>");
-                    // Adding a class
-                    a.addClass("foodie");
-                    // Adding a data-attribute with a value of the food at index i
-                    a.attr("data-name", foodTypes[i]);
-                    // Providing the button's text with a value of the food at index i
-                    a.text(foodTypes[i]);
-                    // Adding the button to the HTML
-                    $("#giphyContainer").append(a);
-                }
+        
             }
 
             // Function for displaying giphy
