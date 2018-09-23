@@ -7,8 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giphy API Homework Week 6</title>
     <style type="text/css">
-        button {
-            margin-top: 30px;
+        button,
+            {
+            float: right;
+            margin-top: 20px;
+
         }
 
         form,
@@ -35,15 +38,17 @@
 
         </div>
 
+
         <!-- Input Form-->
         <form>
             <input id="addGiphy" value="Add Magic Button" type="submit"></span>
             <span id="giphyInput"><input id="giphy-input" type="text" placeholder="Type Something Funny">
         </form>
 
+
         <!-- Giphy Buttons will get dynamically dumped here -->
-        <div id="giphyButton">
-            <button id ="giphyButton" data-search="Tommy Boy">Tommy Boy</button>
+        <div id="buttonArea">
+            <button data-search="Tommy Boy">Tommy Boy</button>
 
         </div>
 
@@ -54,23 +59,63 @@
             crossorigin="anonymous"></script>
 
         <script type="text/javascript">
+
+
+            // initial array of giphy buttons
+            var gifs = ["Spock", "Captain Kurk", "Grumpy Cat", "El Chapulín", "chespirito", "chavo del 8", "Gilda Radner"]
+
+
+            // Then dynamicaly generating buttons for each item in the array.
+            //   var a = $("<button>");
+
             //  On Click event listener for buttons
-            $("#addGiphy").on("click", function(){
-                alert( "That's a good one! Now click your button to let the magic happen...")
-                
-            });
-            $("button").on("click", function (event) {
-                event.preventDefault();
-             //   alert( "You're Hillarious! Do it again!");
-                
+
+
+            function renderButtons() {
+                //  alert("That's a good one! Now click your button to let the magic happen...")
+
+                //   $("#buttonArea").empty();
+
+                // Looping through the array of movies
+                for (var i = 0; i < gifs.length; i++) {
+
+                    var a = $("<button>");
+                    a.addClass("giphybutton");
+                    a.attr("data-search", gifs[i]);
+                    a.text(gifs[i]);
+                    $("#buttonArea").append(a);
+
+                    console.log(a);
+
+
+
+                }
+            }
+
+           $("#addGiphy").on("click", function(event) {
+               event.preventDefault();
+               
+               var giphyInput = $("#addGiphy").val().trim();
+               gifs.push(giphyInput);
+               renderButtons();
+
+               console.log(giphyInput)
+           })
+
+
+
+           // $("button").on("click", function () {
+                //   event.preventDefault();
+                //   alert( "You're Hillarious! Do it again!");
+
                 // make buttons connect with API
-                var x = $(this).data("search")
-                 console.log(x);
+              //  var x = $(this).data("search")
+                //console.log(x);
 
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + x + "&api_key=7HsIMdFRpHba4QRuO94mPXbrHh5b9AGy&limit=10";
-                
+       //         var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + x + "&api_key=7HsIMdFRpHba4QRuO94mPXbrHh5b9AGy&limit=10";
 
-              })
+
+           // })
 
 /*
 
