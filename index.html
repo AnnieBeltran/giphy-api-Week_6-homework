@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giphy API Homework Week 6</title>
     <style type="text/css">
-        button,
+        .buttonContain,
             {
             float: right;
-            margin-top: 20px;
+            margin-top: 50px;
 
         }
 
@@ -34,23 +34,27 @@
         <h3>Add a magic button for a wacky good time.</h3>
 
         <!--Giphy's Will Go Here-->
-        <div id="giphyContainer">TEST
+        <div id="giphyContainer">
 
         </div>
 
 
         <!-- Input Form-->
         <form>
-            <input id="addGiphy" value="Add Magic Button" type="submit"></span>
-            <span id="giphyInput"><input id="giphy-input" type="text" placeholder="Type Something Funny">
+            <input id="addGiphy" value="Add Magic Button" type="submit">
+            <input id="giphyInput" type="text" placeholder="Type Something Funny">
+            <span id="entry" style="color: white; background: red"></span>
         </form>
 
-
+        <div class="buttonContain">
         <!-- Giphy Buttons will get dynamically dumped here -->
         <div id="buttonArea">
             <button data-search="Tommy Boy">Tommy Boy</button>
 
         </div>
+    </div>
+
+        <div id="ratings"></div>
 
 
         <!-- using Giphy Search End Point -->
@@ -62,45 +66,65 @@
 
 
             // initial array of giphy buttons
-            var gifs = ["Spock", "Captain Kurk", "Grumpy Cat", "El Chapulín", "chespirito", "chavo del 8", "Gilda Radner"]
+            var gifs = ["Spock", "Captain Kurk", "Grumpy Cat", "El Chapulín", "chespirito", "chavo del 8", "Gilda Radner"];
+            var gifImage = "";
 
+            // show buttons
 
-            // Then dynamicaly generating buttons for each item in the array.
-            //   var a = $("<button>");
+            function showButtons() {
+
+                $("#buttonArea").empty();
+                $("#space-input").val("");
+
+                // loop through array
+
+                for (var i = 0; i < gifs.length; i++) {
+                    var button = $("<button>");
+                    button.addClass("giphyButton");
+                    button.attr("gif-name", gifs[i]);
+                    button.text(gifs[i]);
+                    $("#buttonArea").append(button);
+                    $("buttonArea").append(" ");
+                }
+            }
+
+            showButtons();
+
+            //function to add on.click for add button - adding to array - create new button
+            $("#addGiphy").on("click", function (event) {
+                $("#entry").empty();
+                event.preventDefault();
+
+                var inputGiphy = $("#giphyInput").val().trim();
+                var giphyName = $(this).attr("gif-name");
+                
+                console.log(inputGiphy)
+            }
+            )
+
 
             //  On Click event listener for buttons
 
 
-            function renderButtons() {
+
+
+
+
                 //  alert("That's a good one! Now click your button to let the magic happen...")
 
-                //   $("#buttonArea").empty();
-
-                // Looping through the array of movies
-                for (var i = 0; i < gifs.length; i++) {
-
-                    var a = $("<button>");
-                    a.addClass("giphybutton");
-                    a.attr("data-search", gifs[i]);
-                    a.text(gifs[i]);
-                    $("#buttonArea").append(a);
-
-                    console.log(a);
 
 
 
-                }
-            }
+        //   $("#addGiphy").on("click", function(event) {
+        //       event.preventDefault();
 
-           $("#addGiphy").on("click", function(event) {
-               event.preventDefault();
-               
-               var giphyInput = $("#addGiphy").val().trim();
-               gifs.push(giphyInput);
-               renderButtons();
 
-               console.log(giphyInput)
-           })
+
+
+
+
+         //  })
+
 
 
 
